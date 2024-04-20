@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd0xkgjbn0qd4"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_rrj4m"]
+[ext_resource type="PackedScene" uid="uid://dmu10rkoc676y" path="res://Scenes/login_form.tscn" id="2_o3ssa"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_rrj4m")
+main_scene_tscn = ExtResource("2_o3ssa")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="ready" from="." to="." method="_on_ready"]

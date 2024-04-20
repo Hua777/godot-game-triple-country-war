@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3xc70ltod67e"]
+
+[ext_resource type="Texture2D" uid="uid://b6g5o53ovurbq" path="res://Resources/people.png" id="1_dk4x6"]
+
+[node name="游戏时背景" type="Node"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(655, 378)
+texture = ExtResource("1_dk4x6")

@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0cyd7ruhsuc8"]
+[gd_scene load_steps=3 format=3 uid="uid://c0cyd7ruhsuc8"]
 
 [ext_resource type="Script" path="res://Scripts/dialog_box.gd" id="1_fxkjc"]
+
+[sub_resource type="Theme" id="Theme_e3ofs"]
+default_font_size = 24
 
 [node name="对话框" type="Control"]
 layout_mode = 3
@@ -9,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_e3ofs")
 script = ExtResource("1_fxkjc")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -63,9 +67,8 @@ fit_content = true
 tab_size = 2
 
 [node name="确认按钮" type="Button" parent="ColorRect/MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-size_flags_horizontal = 8
 text = "好的"
 
 [connection signal="ready" from="." to="." method="_on_ready"]

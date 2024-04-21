@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Global="*res://Scripts/global.gd"
 DialogTool="*res://Scripts/dialog_tool.gd"
 SceneChanger="*res://Components/scene_changer.tscn"
 

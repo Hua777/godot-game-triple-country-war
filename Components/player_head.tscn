@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=3 uid="uid://bc0rskbii2bp8"]
+
+[ext_resource type="Texture2D" uid="uid://b6g5o53ovurbq" path="res://Resources/people.png" id="1_5xa8x"]
+[ext_resource type="Script" path="res://Scripts/player_head.gd" id="1_yd8vv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6i1w"]
+bg_color = Color(0.815686, 0.509804, 0.415686, 0.623529)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.392157)
+shadow_size = 5
+
+[sub_resource type="Theme" id="Theme_voifd"]
+default_font_size = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75fgl"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(1.78084e-06, 0.43908, 0.534488, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qa8l"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.240942, 0.579879, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp3ft"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.628181, 0.107219, 3.36915e-07, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="PlayerHead" type="Panel"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_n6i1w")
+script = ExtResource("1_yd8vv")
+
+[node name="Margin外包" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="没有玩家外包堆叠" type="VBoxContainer" parent="Margin外包"]
+layout_mode = 2
+
+[node name="空头像" type="ColorRect" parent="Margin外包/没有玩家外包堆叠"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+color = Color(0, 0, 0, 0.501961)
+
+[node name="Label等待玩家加入" type="Label" parent="Margin外包/没有玩家外包堆叠"]
+layout_mode = 2
+mouse_filter = 1
+text = "等待玩家加入"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="有玩家外包堆叠" type="VBoxContainer" parent="Margin外包"]
+layout_mode = 2
+
+[node name="顶部堆叠" type="HBoxContainer" parent="Margin外包/有玩家外包堆叠"]
+layout_mode = 2
+theme = SubResource("Theme_voifd")
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Label准备好了" type="Label" parent="Margin外包/有玩家外包堆叠/顶部堆叠"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_75fgl")
+text = "准备好了"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label你" type="Label" parent="Margin外包/有玩家外包堆叠/顶部堆叠"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_8qa8l")
+text = "你"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label房主" type="Label" parent="Margin外包/有玩家外包堆叠/顶部堆叠"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_sp3ft")
+text = "房主"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button踢开" type="Button" parent="Margin外包/有玩家外包堆叠/顶部堆叠"]
+layout_mode = 2
+text = "踢开"
+
+[node name="玩家头像" type="TextureRect" parent="Margin外包/有玩家外包堆叠"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_5xa8x")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label玩家名" type="Label" parent="Margin外包/有玩家外包堆叠"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_filter = 1
+text = "玩家名"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="Margin外包/有玩家外包堆叠/顶部堆叠/Button踢开" to="." method="_on_kick_out_button_pressed"]

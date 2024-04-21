@@ -1,15 +1,299 @@
-[gd_scene load_steps=2 format=3 uid="uid://dc8o10kopxxbk"]
+[gd_scene load_steps=6 format=3 uid="uid://dc8o10kopxxbk"]
 
-[ext_resource type="PackedScene" uid="uid://d3xc70ltod67e" path="res://Components/playing_back.tscn" id="1_4mfdw"]
+[ext_resource type="Texture2D" uid="uid://b6g5o53ovurbq" path="res://Resources/people.png" id="1_05x6q"]
+[ext_resource type="Texture2D" uid="uid://bm2ybv4wm3v8p" path="res://Resources/logo.png" id="1_br7t3"]
+[ext_resource type="Script" path="res://Scripts/home.gd" id="1_scfaf"]
+
+[sub_resource type="Theme" id="Theme_ikv2a"]
+default_font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mj7l2"]
+bg_color = Color(1, 1, 1, 0.25098)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.392157)
+shadow_size = 5
 
 [node name="Home" type="Node"]
+script = ExtResource("1_scfaf")
 
-[node name="游戏时背景" parent="." instance=ExtResource("1_4mfdw")]
-
-[node name="Control" type="Control" parent="."]
+[node name="控制页" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_ikv2a")
+
+[node name="背景" type="ColorRect" parent="控制页"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25098, 0.25098, 0.25098, 1)
+
+[node name="外包" type="HBoxContainer" parent="控制页"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="左侧堆叠" type="VBoxContainer" parent="控制页/外包"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Margin列表房间面板" type="MarginContainer" parent="控制页/外包/左侧堆叠"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="Panal列表房间面板" type="Panel" parent="控制页/外包/左侧堆叠/Margin列表房间面板"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mj7l2")
+
+[node name="Margin内列表房间面板" type="MarginContainer" parent="控制页/外包/左侧堆叠/Margin列表房间面板/Panal列表房间面板"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox列表房间面板" type="VBoxContainer" parent="控制页/外包/左侧堆叠/Margin列表房间面板/Panal列表房间面板/Margin内列表房间面板"]
+layout_mode = 2
+
+[node name="Label房间列表" type="Label" parent="控制页/外包/左侧堆叠/Margin列表房间面板/Panal列表房间面板/Margin内列表房间面板/VBox列表房间面板"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "房间列表"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="房间号搜索面板" type="HBoxContainer" parent="控制页/外包/左侧堆叠/Margin列表房间面板/Panal列表房间面板/Margin内列表房间面板/VBox列表房间面板"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Editor房间号" type="LineEdit" parent="控制页/外包/左侧堆叠/Margin列表房间面板/Panal列表房间面板/Margin内列表房间面板/VBox列表房间面板/房间号搜索面板"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "请输入房间号"
+clear_button_enabled = true
+
+[node name="Button搜索" type="Button" parent="控制页/外包/左侧堆叠/Margin列表房间面板/Panal列表房间面板/Margin内列表房间面板/VBox列表房间面板/房间号搜索面板"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "搜索"
+
+[node name="Scroll房间列表" type="ScrollContainer" parent="控制页/外包/左侧堆叠/Margin列表房间面板/Panal列表房间面板/Margin内列表房间面板/VBox列表房间面板"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Grid房间列表" type="GridContainer" parent="控制页/外包/左侧堆叠/Margin列表房间面板/Panal列表房间面板/Margin内列表房间面板/VBox列表房间面板/Scroll房间列表"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="控制页/外包"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="中间堆叠" type="VBoxContainer" parent="控制页/外包/MarginContainer"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="控制页/外包/MarginContainer/中间堆叠"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture = ExtResource("1_br7t3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="人物" type="TextureRect" parent="控制页/外包/MarginContainer/中间堆叠"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_05x6q")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="名字" type="Label" parent="控制页/外包/MarginContainer/中间堆叠"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "用户名"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button退出登录" type="Button" parent="控制页/外包/MarginContainer/中间堆叠"]
+layout_mode = 2
+text = "退出登录"
+
+[node name="右侧堆叠" type="VBoxContainer" parent="控制页/外包"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Margin创建房间面板" type="MarginContainer" parent="控制页/外包/右侧堆叠"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="Panal创建房间面板" type="Panel" parent="控制页/外包/右侧堆叠/Margin创建房间面板"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mj7l2")
+
+[node name="Margin内创建房间面板" type="MarginContainer" parent="控制页/外包/右侧堆叠/Margin创建房间面板/Panal创建房间面板"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox创建房间面板" type="VBoxContainer" parent="控制页/外包/右侧堆叠/Margin创建房间面板/Panal创建房间面板/Margin内创建房间面板"]
+layout_mode = 2
+
+[node name="Label创建房间" type="Label" parent="控制页/外包/右侧堆叠/Margin创建房间面板/Panal创建房间面板/Margin内创建房间面板/VBox创建房间面板"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "创建房间"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="创建房间表单" type="GridContainer" parent="控制页/外包/右侧堆叠/Margin创建房间面板/Panal创建房间面板/Margin内创建房间面板/VBox创建房间面板"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Label房间号" type="Label" parent="控制页/外包/右侧堆叠/Margin创建房间面板/Panal创建房间面板/Margin内创建房间面板/VBox创建房间面板/创建房间表单"]
+layout_mode = 2
+text = "房间号"
+
+[node name="Editor房间号" type="LineEdit" parent="控制页/外包/右侧堆叠/Margin创建房间面板/Panal创建房间面板/Margin内创建房间面板/VBox创建房间面板/创建房间表单"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hua777"
+placeholder_text = "请自定义房间号"
+clear_button_enabled = true
+
+[node name="Label密码" type="Label" parent="控制页/外包/右侧堆叠/Margin创建房间面板/Panal创建房间面板/Margin内创建房间面板/VBox创建房间面板/创建房间表单"]
+layout_mode = 2
+text = "密码"
+
+[node name="Editor密码" type="LineEdit" parent="控制页/外包/右侧堆叠/Margin创建房间面板/Panal创建房间面板/Margin内创建房间面板/VBox创建房间面板/创建房间表单"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1234"
+placeholder_text = "请自定义密码"
+max_length = 4
+clear_button_enabled = true
+secret = true
+language = "en"
+
+[node name="Button点击创建" type="Button" parent="控制页/外包/右侧堆叠/Margin创建房间面板/Panal创建房间面板/Margin内创建房间面板/VBox创建房间面板"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "点击创建"
+
+[node name="Margin加入房间面板" type="MarginContainer" parent="控制页/外包/右侧堆叠"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel加入房间面板" type="Panel" parent="控制页/外包/右侧堆叠/Margin加入房间面板"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mj7l2")
+
+[node name="Margin内加入房间面板" type="MarginContainer" parent="控制页/外包/右侧堆叠/Margin加入房间面板/Panel加入房间面板"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox加入房间面板" type="VBoxContainer" parent="控制页/外包/右侧堆叠/Margin加入房间面板/Panel加入房间面板/Margin内加入房间面板"]
+layout_mode = 2
+
+[node name="Label加入房间" type="Label" parent="控制页/外包/右侧堆叠/Margin加入房间面板/Panel加入房间面板/Margin内加入房间面板/VBox加入房间面板"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "加入房间"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="加入房间表单" type="GridContainer" parent="控制页/外包/右侧堆叠/Margin加入房间面板/Panel加入房间面板/Margin内加入房间面板/VBox加入房间面板"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Label房间号" type="Label" parent="控制页/外包/右侧堆叠/Margin加入房间面板/Panel加入房间面板/Margin内加入房间面板/VBox加入房间面板/加入房间表单"]
+layout_mode = 2
+text = "房间号"
+
+[node name="Editor房间号" type="LineEdit" parent="控制页/外包/右侧堆叠/Margin加入房间面板/Panel加入房间面板/Margin内加入房间面板/VBox加入房间面板/加入房间表单"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hua777"
+placeholder_text = "请自定义房间号"
+clear_button_enabled = true
+
+[node name="Label密码" type="Label" parent="控制页/外包/右侧堆叠/Margin加入房间面板/Panel加入房间面板/Margin内加入房间面板/VBox加入房间面板/加入房间表单"]
+layout_mode = 2
+text = "密码"
+
+[node name="Editor密码" type="LineEdit" parent="控制页/外包/右侧堆叠/Margin加入房间面板/Panel加入房间面板/Margin内加入房间面板/VBox加入房间面板/加入房间表单"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1234"
+placeholder_text = "请自定义密码"
+max_length = 4
+clear_button_enabled = true
+secret = true
+language = "en"
+
+[node name="Button点击加入" type="Button" parent="控制页/外包/右侧堆叠/Margin加入房间面板/Panel加入房间面板/Margin内加入房间面板/VBox加入房间面板"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "点击加入"
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="控制页/外包/左侧堆叠/Margin列表房间面板/Panal列表房间面板/Margin内列表房间面板/VBox列表房间面板/房间号搜索面板/Button搜索" to="." method="_on_room_search_button_pressed"]
+[connection signal="pressed" from="控制页/外包/MarginContainer/中间堆叠/Button退出登录" to="." method="_on_logout_button_pressed"]
+[connection signal="pressed" from="控制页/外包/右侧堆叠/Margin创建房间面板/Panal创建房间面板/Margin内创建房间面板/VBox创建房间面板/Button点击创建" to="." method="_on_room_create_button_pressed"]
+[connection signal="pressed" from="控制页/外包/右侧堆叠/Margin加入房间面板/Panel加入房间面板/Margin内加入房间面板/VBox加入房间面板/Button点击加入" to="." method="_on_room_join_button_pressed"]

@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/login_form.gd" id="1_1iwa0"]
 [ext_resource type="Texture2D" uid="uid://bm2ybv4wm3v8p" path="res://Resources/logo.png" id="1_iijc6"]
 
-[sub_resource type="Theme" id="Theme_rfbqa"]
-default_font_size = 25
+[sub_resource type="Theme" id="Theme_jtbke"]
+default_font_size = 24
 
 [sub_resource type="Gradient" id="Gradient_s7ihm"]
 offsets = PackedFloat32Array(0, 0.406667)
@@ -14,23 +14,29 @@ colors = PackedColorArray(0.716296, 0.716296, 0.716296, 1, 0.0627451, 0, 0, 1)
 gradient = SubResource("Gradient_s7ihm")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_umtpk"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
 bg_color = Color(1, 1, 1, 0.12549)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="登录表单" type="Control"]
+[node name="LoginForm" type="Node"]
+script = ExtResource("1_1iwa0")
+
+[node name="登录表单" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_rfbqa")
-script = ExtResource("1_1iwa0")
+theme = SubResource("Theme_jtbke")
 
-[node name="背景" type="TextureRect" parent="."]
+[node name="背景" type="TextureRect" parent="登录表单"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,7 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_c752o")
 
-[node name="最外层" type="HBoxContainer" parent="."]
+[node name="最外层" type="HBoxContainer" parent="登录表单"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.2
@@ -48,99 +54,92 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="左侧" type="VBoxContainer" parent="最外层"]
+[node name="左侧" type="VBoxContainer" parent="登录表单/最外层"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Margin左侧" type="MarginContainer" parent="最外层/左侧"]
+[node name="Margin左侧" type="MarginContainer" parent="登录表单/最外层/左侧"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_right = 10
 
-[node name="Logo" type="TextureRect" parent="最外层/左侧/Margin左侧"]
+[node name="Logo" type="TextureRect" parent="登录表单/最外层/左侧/Margin左侧"]
 layout_mode = 2
 texture = ExtResource("1_iijc6")
 stretch_mode = 5
 
-[node name="右侧" type="VBoxContainer" parent="最外层"]
+[node name="右侧" type="VBoxContainer" parent="登录表单/最外层"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="右侧上层扩展" type="VBoxContainer" parent="最外层/右侧"]
+[node name="右侧上层扩展" type="VBoxContainer" parent="登录表单/最外层/右侧"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="最外层/右侧"]
+[node name="Panel" type="Panel" parent="登录表单/最外层/右侧"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_umtpk")
 
-[node name="Margin右侧" type="MarginContainer" parent="最外层/右侧/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="登录表单/最外层/右侧/Panel"]
 layout_mode = 2
-offset_top = 8.0
-offset_right = 322.0
-offset_bottom = 257.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="最外层/右侧/Panel/Margin右侧"]
-layout_mode = 2
+offset_left = 20.0
+offset_top = 34.0
+offset_right = 302.0
+offset_bottom = 231.0
 size_flags_vertical = 4
 
-[node name="输入表单网格" type="GridContainer" parent="最外层/右侧/Panel/Margin右侧/VBoxContainer"]
+[node name="输入表单网格" type="GridContainer" parent="登录表单/最外层/右侧/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 30
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 20
 columns = 2
 
-[node name="Label账号" type="Label" parent="最外层/右侧/Panel/Margin右侧/VBoxContainer/输入表单网格"]
+[node name="Label账号" type="Label" parent="登录表单/最外层/右侧/Panel/VBoxContainer/输入表单网格"]
 layout_mode = 2
 text = "账号"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Editor账号" type="LineEdit" parent="最外层/右侧/Panel/Margin右侧/VBoxContainer/输入表单网格"]
+[node name="Editor账号" type="LineEdit" parent="登录表单/最外层/右侧/Panel/VBoxContainer/输入表单网格"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Hua777"
 placeholder_text = "请输入账号"
 clear_button_enabled = true
 
-[node name="Label密码" type="Label" parent="最外层/右侧/Panel/Margin右侧/VBoxContainer/输入表单网格"]
+[node name="Label密码" type="Label" parent="登录表单/最外层/右侧/Panel/VBoxContainer/输入表单网格"]
 layout_mode = 2
 text = "密码"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Editor密码" type="LineEdit" parent="最外层/右侧/Panel/Margin右侧/VBoxContainer/输入表单网格"]
+[node name="Editor密码" type="LineEdit" parent="登录表单/最外层/右侧/Panel/VBoxContainer/输入表单网格"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "abcdef"
+text = "123456"
 placeholder_text = "请输入密码"
 clear_button_enabled = true
 secret = true
 
-[node name="BoxContainer" type="BoxContainer" parent="最外层/右侧/Panel/Margin右侧/VBoxContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="登录表单/最外层/右侧/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="按钮表单网格" type="GridContainer" parent="最外层/右侧/Panel/Margin右侧/VBoxContainer"]
+[node name="按钮表单网格" type="GridContainer" parent="登录表单/最外层/右侧/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Button登录" type="Button" parent="最外层/右侧/Panel/Margin右侧/VBoxContainer/按钮表单网格"]
+[node name="Button登录" type="Button" parent="登录表单/最外层/右侧/Panel/VBoxContainer/按钮表单网格"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "登录 / 注册"
 
-[node name="右侧下层扩展" type="VBoxContainer" parent="最外层/右侧"]
+[node name="右侧下层扩展" type="VBoxContainer" parent="登录表单/最外层/右侧"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[connection signal="pressed" from="最外层/右侧/Panel/Margin右侧/VBoxContainer/按钮表单网格/Button登录" to="." method="_on_login_pressed"]
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="登录表单/最外层/右侧/Panel/VBoxContainer/按钮表单网格/Button登录" to="." method="_on_login_pressed"]

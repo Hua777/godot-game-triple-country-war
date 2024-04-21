@@ -1,0 +1,241 @@
+[gd_scene load_steps=5 format=3 uid="uid://byc1pjr4vf18b"]
+
+[ext_resource type="Script" path="res://Scripts/room.gd" id="1_b4d1u"]
+[ext_resource type="PackedScene" uid="uid://bc0rskbii2bp8" path="res://Components/player_head.tscn" id="2_xcmrc"]
+
+[sub_resource type="Theme" id="Theme_f6n3d"]
+default_font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jb7a0"]
+bg_color = Color(0, 0, 0, 0.25098)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+shadow_color = Color(1, 1, 1, 0.392157)
+shadow_size = 5
+
+[node name="Room" type="Node"]
+script = ExtResource("1_b4d1u")
+
+[node name="房间表单" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_f6n3d")
+
+[node name="背景" type="ColorRect" parent="房间表单"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25098, 0.25098, 0.25098, 1)
+
+[node name="外包" type="MarginContainer" parent="房间表单"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="堆叠" type="VBoxContainer" parent="房间表单/外包"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="上层堆叠" type="HBoxContainer" parent="房间表单/外包/堆叠"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Button离开房间" type="Button" parent="房间表单/外包/堆叠/上层堆叠"]
+layout_mode = 2
+text = "离开房间"
+
+[node name="Label房间名" type="Label" parent="房间表单/外包/堆叠/上层堆叠"]
+layout_mode = 2
+text = "Hua777"
+
+[node name="下层堆叠" type="HBoxContainer" parent="房间表单/外包/堆叠"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Margin控制器" type="MarginContainer" parent="房间表单/外包/堆叠/下层堆叠"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel控制器" type="PanelContainer" parent="房间表单/外包/堆叠/下层堆叠/Margin控制器"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jb7a0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="房间表单/外包/堆叠/下层堆叠/Margin控制器"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Label身份设置" type="Label" parent="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer"]
+layout_mode = 2
+text = "身份设置"
+
+[node name="HSeparator身份设置" type="HSeparator" parent="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer"]
+layout_mode = 2
+
+[node name="Grid身份设置" type="GridContainer" parent="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Label主公数量" type="Label" parent="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer/Grid身份设置"]
+layout_mode = 2
+text = "主公人数"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label主公数量写死" type="Label" parent="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer/Grid身份设置"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label忠臣数量" type="Label" parent="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer/Grid身份设置"]
+layout_mode = 2
+text = "忠臣人数"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Editor忠臣数量" type="LineEdit" parent="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer/Grid身份设置"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "忠臣人数"
+alignment = 1
+max_length = 1
+clear_button_enabled = true
+caret_blink = true
+
+[node name="Label内奸数量" type="Label" parent="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer/Grid身份设置"]
+layout_mode = 2
+text = "内奸人数"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Editor内奸数量" type="LineEdit" parent="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer/Grid身份设置"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "内奸人数"
+alignment = 1
+max_length = 1
+clear_button_enabled = true
+caret_blink = true
+
+[node name="Label反贼数量" type="Label" parent="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer/Grid身份设置"]
+layout_mode = 2
+text = "反贼人数"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Editor反贼数量" type="LineEdit" parent="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer/Grid身份设置"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "反贼人数"
+alignment = 1
+max_length = 1
+clear_button_enabled = true
+caret_blink = true
+
+[node name="Button开始游戏" type="Button" parent="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer"]
+layout_mode = 2
+text = "开始游戏"
+
+[node name="Grid玩家们" type="GridContainer" parent="房间表单/外包/堆叠/下层堆叠"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 4
+
+[node name="玩家1" parent="房间表单/外包/堆叠/下层堆叠/Grid玩家们" instance=ExtResource("2_xcmrc")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+index = 0
+
+[node name="玩家2" parent="房间表单/外包/堆叠/下层堆叠/Grid玩家们" instance=ExtResource("2_xcmrc")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+index = 1
+
+[node name="玩家3" parent="房间表单/外包/堆叠/下层堆叠/Grid玩家们" instance=ExtResource("2_xcmrc")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+index = 2
+
+[node name="玩家4" parent="房间表单/外包/堆叠/下层堆叠/Grid玩家们" instance=ExtResource("2_xcmrc")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+index = 3
+
+[node name="玩家5" parent="房间表单/外包/堆叠/下层堆叠/Grid玩家们" instance=ExtResource("2_xcmrc")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+index = 4
+
+[node name="玩家6" parent="房间表单/外包/堆叠/下层堆叠/Grid玩家们" instance=ExtResource("2_xcmrc")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+index = 5
+
+[node name="玩家7" parent="房间表单/外包/堆叠/下层堆叠/Grid玩家们" instance=ExtResource("2_xcmrc")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+index = 6
+
+[node name="玩家8" parent="房间表单/外包/堆叠/下层堆叠/Grid玩家们" instance=ExtResource("2_xcmrc")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+index = 7
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="房间表单/外包/堆叠/上层堆叠/Button离开房间" to="." method="_on_room_leave_button_pressed"]
+[connection signal="pressed" from="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer/Button开始游戏" to="." method="_on_start_pressed"]
+[connection signal="kick_out" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家1" to="." method="_on_user_player_kick_out"]
+[connection signal="pressed" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家1" to="." method="_on_user_player_pressed"]
+[connection signal="kick_out" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家2" to="." method="_on_user_player_kick_out"]
+[connection signal="pressed" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家2" to="." method="_on_user_player_pressed"]
+[connection signal="kick_out" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家3" to="." method="_on_user_player_kick_out"]
+[connection signal="pressed" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家3" to="." method="_on_user_player_pressed"]
+[connection signal="kick_out" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家4" to="." method="_on_user_player_kick_out"]
+[connection signal="pressed" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家4" to="." method="_on_user_player_pressed"]
+[connection signal="kick_out" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家5" to="." method="_on_user_player_kick_out"]
+[connection signal="pressed" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家5" to="." method="_on_user_player_pressed"]
+[connection signal="kick_out" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家6" to="." method="_on_user_player_kick_out"]
+[connection signal="pressed" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家6" to="." method="_on_user_player_pressed"]
+[connection signal="kick_out" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家7" to="." method="_on_user_player_kick_out"]
+[connection signal="pressed" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家7" to="." method="_on_user_player_pressed"]
+[connection signal="kick_out" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家8" to="." method="_on_user_player_kick_out"]
+[connection signal="pressed" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家8" to="." method="_on_user_player_pressed"]

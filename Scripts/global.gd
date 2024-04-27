@@ -10,7 +10,6 @@ var HEADER_TCWB_TOKEN: String:
   get:
     return "tcwb-token: " + tcwb_token
 
-
 func parse_response(body: PackedByteArray):
   var json = JSON.parse_string(body.get_string_from_utf8())
   print("[http] got response %s" % json)

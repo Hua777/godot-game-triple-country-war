@@ -1,6 +1,6 @@
 extends Node
 
-const uuid_util = preload('res://Addons/uuid/uuid.gd')
+const uuid_util = preload ('res://Addons/uuid/uuid.gd')
 
 var socket = WebSocketPeer.new()
 
@@ -73,7 +73,7 @@ func parse_message(data: PackedByteArray):
   var data_str = data.get_string_from_utf8()
   print('[websocket] received message %s' % data_str)
   var value = JSON.parse_string(data_str)
-  return [value["msg_id"], value["mode"], value["command"], value]
+  return [value["msg_id"],value["mode"],value["command"],value]
 
 func _process(delta):
   var state = socket.get_ready_state()

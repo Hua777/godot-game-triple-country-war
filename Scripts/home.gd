@@ -1,6 +1,6 @@
 extends Node
 
-var room_tscn = preload("res://Scenes/room.tscn")
+var room_tscn = preload ("res://Scenes/room.tscn")
 
 @onready var user_name_label = $"控制页/外包/MarginContainer/中间堆叠/名字"
 
@@ -16,7 +16,7 @@ var room_tscn = preload("res://Scenes/room.tscn")
 
 @onready var roomPageHttpRequest: HTTPRequest = $RoomPageHTTPRequest
 
-func check_id_and_pwd(_id: String, pwd: String)->bool:
+func check_id_and_pwd(_id: String, pwd: String) -> bool:
   if len(_id) < 4 or len(pwd) != 4:
     DialogTool.show_dialoig('请输入正确的房间号或密码', false)
     return false

@@ -5,7 +5,7 @@ extends Node
 
 @onready var loginHttpRequest: HTTPRequest = $LoginHTTPRequest
 
-var home_tscn = preload("res://Scenes/home.tscn")
+var home_tscn = preload ("res://Scenes/home.tscn")
 
 func _on_ready() -> void:
   # auto_login()
@@ -41,4 +41,3 @@ func _on_login_http_request_request_completed(result: int, response_code: int, h
     Global.tcwb_token = json['tcwb-token']
     TcwbSocket.connect_to_backend()
     SceneChanger.next_scene(home_tscn.instantiate())
-

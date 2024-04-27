@@ -1,6 +1,6 @@
 extends Node
 
-var dialog_box_tscn = preload("res://Components/dialog_box.tscn")
+var dialog_box_tscn = preload ("res://Components/dialog_box.tscn")
 
 func show_dialoig(text: String, animate: bool):
   var dialog = dialog_box_tscn.instantiate()

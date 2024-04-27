@@ -2,10 +2,10 @@ extends Node
 
 var room_id: String
 
-@export var master: bool:
+@export var room_master: bool:
   set(value):
-    master = value
-    if master:
+    room_master = value
+    if room_master:
       start_button.text = '开始游戏'
       loyal_count_editor.editable = true
       traitor_count_editor.editable = true
@@ -35,7 +35,7 @@ func _on_ready() -> void:
   TcwbSocket.connect("someone_leave_room", Callable(self, "_on_someone_leave_room_finished"))
   TcwbSocket.connect("you_kicked_out", Callable(self, "_on_you_kicked_out_finished"))
   TcwbSocket.connect("room_property_changed", Callable(self, "_on_room_property_changed_finished"))
-  master = false
+  room_master = false
   TcwbSocket.request_room_info()
 
 func _on_room_info_finished(info):
@@ -48,7 +48,7 @@ func _on_room_info_finished(info):
   for account in info['users']:
     player_uis[idx].joined = true
     player_uis[idx].you = Global.user_info['account'] == account
-    player_uis[idx].master = account == master_account
+    player_uis[idx].room_master = account == master_account
     player_uis[idx].can_kick_out = Global.user_info['account'] == master_account and account != Global.user_info['account']
     player_uis[idx].user_name = info['users'][account]['username']
     player_uis[idx].bag = info['users'][account]
@@ -56,7 +56,7 @@ func _on_room_info_finished(info):
   loyal_count_editor.text = str(info['room']['loyal_count'])
   traitor_count_editor.text = str(info['room']['traitor_count'])
   rebel_count_editor.text = str(info['room']['rebel_count'])
-  master = Global.user_info['account'] == master_account
+  room_master = Global.user_info['account'] == master_account
 
 func _on_room_leave_button_pressed() -> void:
   TcwbSocket.request_leave_room()
@@ -84,7 +84,7 @@ func _on_you_kicked_out_finished(info):
   SceneChanger.back_scene()
 
 func _on_start_pressed() -> void:
-  if master:
+  if room_master:
     pass
   else:
     if checked:
@@ -104,5 +104,5 @@ func _on_editor反贼数量_text_changed(new_text: String) -> void:
   TcwbSocket.request_change_room_property(loyal_count_editor.text, traitor_count_editor.text, rebel_count_editor.text)
 
 func _on_room_property_changed_finished(info):
-  if not master:
+  if not room_master:
     TcwbSocket.request_room_info()

@@ -31,10 +31,10 @@ var you: bool:
     else:
       you_label.hide()
 
-var master: bool:
+var room_master: bool:
   set(value):
-    master = value
-    if master:
+    room_master = value
+    if room_master:
       master_label.show()
     else:
       master_label.hide()
@@ -71,7 +71,7 @@ func _on_gui_input(event: InputEvent) -> void:
 func clear():
   joined = false
   you = false
-  master = false
+  room_master = false
   checked = false
   user_name = ''
   bag = null

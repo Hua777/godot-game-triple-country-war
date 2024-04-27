@@ -27,6 +27,10 @@ corner_radius_bottom_left = 20
 [node name="LoginForm" type="Node"]
 script = ExtResource("1_1iwa0")
 
+[node name="LoginHTTPRequest" type="HTTPRequest" parent="."]
+use_threads = true
+timeout = 5.0
+
 [node name="登录表单" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -142,4 +146,5 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="request_completed" from="LoginHTTPRequest" to="." method="_on_login_http_request_request_completed"]
 [connection signal="pressed" from="登录表单/最外层/右侧/Panel/VBoxContainer/按钮表单网格/Button登录" to="." method="_on_login_pressed"]

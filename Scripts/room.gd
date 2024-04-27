@@ -49,4 +49,3 @@ func _on_start_pressed() -> void:
     else:
       start_button.text = '取消准备'
       checked = true
-

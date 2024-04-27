@@ -8,7 +8,8 @@ extends Node
 var home_tscn = preload("res://Scenes/home.tscn")
 
 func _on_ready() -> void:
-  auto_login()
+  # auto_login()
+  pass
 
 func auto_login():
   await get_tree().create_timer(1).timeout
@@ -38,5 +39,6 @@ func _on_login_http_request_request_completed(result: int, response_code: int, h
   if Global.check_response_code(response_code, json):
     Global.user_info = json['data']
     Global.tcwb_token = json['tcwb-token']
+    TcwbSocket.connect_to_backend()
     SceneChanger.next_scene(home_tscn.instantiate())
 

@@ -23,13 +23,15 @@ func check_id_and_pwd(_id: String, pwd: String)->bool:
   return true
 
 func _on_ready() -> void:
+  TcwbSocket.connect("you_create_room", Callable(self, "_on_you_create_room_finished"))
+  TcwbSocket.connect("you_join_room", Callable(self, "_on_you_join_room_finished"))
   user_name_label.text = Global.user_info['username']
   _on_room_search_button_pressed()
 
 func _on_room_search_button_pressed() -> void:
   var key = room_search_editor.text
   roomPageHttpRequest.request(
-    Global.BACKEND_URL + '/room/page?key=' + key,
+    Global.BACKEND_URL + '/room/page?key=' + key + '&status=0',
     [Global.HEADER_CONTENT_TYPE_JSON, Global.HEADER_TCWB_TOKEN],
     HTTPClient.METHOD_GET,
     JSON.stringify({
@@ -40,15 +42,30 @@ func _on_room_search_button_pressed() -> void:
 
 func _on_room_create_button_pressed() -> void:
   if check_id_and_pwd(room_create_id_editor.text, room_create_password_editor.text):
+    TcwbSocket.request_create_room(room_create_id_editor.text, room_create_password_editor.text)
+
+func _on_you_create_room_finished(info):
+  if 'msg' in info and info['msg'] != '':
+    DialogTool.show_dialoig(info['msg'], false)
+  else:
     var room = room_tscn.instantiate()
+    room.room_id = room_create_id_editor.text
     SceneChanger.next_scene(room)
 
 func _on_room_join_button_pressed() -> void:
   if check_id_and_pwd(room_join_id_editor.text, room_join_password_editor.text):
+    TcwbSocket.request_join_room(room_join_id_editor.text, room_join_password_editor.text)
+
+func _on_you_join_room_finished(info):
+  if 'msg' in info and info['msg'] != '':
+    DialogTool.show_dialoig(info['msg'], false)
+  else:
     var room = room_tscn.instantiate()
+    room.room_id = room_create_id_editor.text
     SceneChanger.next_scene(room)
 
 func _on_logout_button_pressed() -> void:
+  TcwbSocket.disconnect_from_backend()
   SceneChanger.back_scene()
 
 func _on_room_page_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
@@ -72,4 +89,3 @@ func _on_room_page_http_request_request_completed(result: int, response_code: in
 
 func _on_join_button_pressed(room):
   room_join_id_editor.text = room['id']
-

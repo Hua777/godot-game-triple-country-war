@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://fe3ssuaipsm0"]
+
+[ext_resource type="Script" path="res://Scripts/tcwb_socket.gd" id="1_huhhf"]
+
+[node name="TcwbSocket" type="Node"]
+script = ExtResource("1_huhhf")

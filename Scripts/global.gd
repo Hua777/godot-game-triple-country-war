@@ -13,7 +13,7 @@ var HEADER_TCWB_TOKEN: String:
 
 func parse_response(body: PackedByteArray):
   var json = JSON.parse_string(body.get_string_from_utf8())
-  print(json)
+  print("[http] got response %s" % json)
   return json
 
 func check_response_code(response_code: int, json) -> bool:

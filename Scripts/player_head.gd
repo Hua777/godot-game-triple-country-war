@@ -9,6 +9,7 @@ signal kick_out(player_head)
 @onready var user_name_label = $"Margin外包/有玩家外包堆叠/Label玩家名"
 @onready var no_user_wrapper = $"Margin外包/没有玩家外包堆叠"
 @onready var user_wrapper = $"Margin外包/有玩家外包堆叠"
+@onready var kick_out_button = $"Margin外包/有玩家外包堆叠/顶部堆叠/Button踢开"
 
 @export var index: int = -1
 
@@ -51,6 +52,14 @@ var user_name: String:
     user_name = value
     user_name_label.text = user_name
 
+var can_kick_out: bool:
+  set(value):
+    can_kick_out = value
+    if can_kick_out:
+      kick_out_button.show()
+    else:
+      kick_out_button.hide()
+
 var bag = null
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -59,12 +68,16 @@ func _on_gui_input(event: InputEvent) -> void:
     if Rect2(0, 0, size.x, size.y).has_point(position):
       emit_signal("pressed", self)
 
-func _on_ready() -> void:
+func clear():
   joined = false
   you = false
   master = false
   checked = false
   user_name = ''
+  bag = null
+
+func _on_ready() -> void:
+  clear()
 
 func _on_kick_out_button_pressed() -> void:
   emit_signal("kick_out", self)

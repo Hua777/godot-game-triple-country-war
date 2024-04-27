@@ -67,7 +67,6 @@ text = "离开房间"
 
 [node name="Label房间名" type="Label" parent="房间表单/外包/堆叠/上层堆叠"]
 layout_mode = 2
-text = "Hua777"
 
 [node name="下层堆叠" type="HBoxContainer" parent="房间表单/外包/堆叠"]
 layout_mode = 2
@@ -222,6 +221,9 @@ index = 7
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="房间表单/外包/堆叠/上层堆叠/Button离开房间" to="." method="_on_room_leave_button_pressed"]
+[connection signal="text_changed" from="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer/Grid身份设置/Editor忠臣数量" to="." method="_on_editor忠臣数量_text_changed"]
+[connection signal="text_changed" from="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer/Grid身份设置/Editor内奸数量" to="." method="_on_editor内奸数量_text_changed"]
+[connection signal="text_changed" from="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer/Grid身份设置/Editor反贼数量" to="." method="_on_editor反贼数量_text_changed"]
 [connection signal="pressed" from="房间表单/外包/堆叠/下层堆叠/Margin控制器/VBoxContainer/Button开始游戏" to="." method="_on_start_pressed"]
 [connection signal="kick_out" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家1" to="." method="_on_user_player_kick_out"]
 [connection signal="pressed" from="房间表单/外包/堆叠/下层堆叠/Grid玩家们/玩家1" to="." method="_on_user_player_pressed"]

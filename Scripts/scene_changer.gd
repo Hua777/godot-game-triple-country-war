@@ -20,8 +20,9 @@ func backward():
 func pop_to_root_scene():
   await forward()
   while len(scene_nodes) > 1:
-    var last_scene = scene_nodes.pop_back()
+    var last_scene: Node = scene_nodes.pop_back()
     get_tree().root.remove_child.call_deferred(last_scene)
+    last_scene.queue_free()
   await backward()
   #get_tree().root.print_tree_pretty()
 
@@ -33,9 +34,10 @@ func next_scene(scene: Node):
   #get_tree().root.print_tree_pretty()
 
 func back_scene():
-  var last_scene = scene_nodes.pop_back()
+  var last_scene: Node = scene_nodes.pop_back()
   if last_scene != null:
     await forward()
     get_tree().root.remove_child.call_deferred(last_scene)
+    last_scene.queue_free()
     await backward()
   #get_tree().root.print_tree_pretty()

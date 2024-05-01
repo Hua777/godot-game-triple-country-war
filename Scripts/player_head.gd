@@ -5,7 +5,7 @@ signal kick_out(player_head)
 
 @onready var you_label = $"Margin外包/有玩家外包堆叠/顶部堆叠/Label你"
 @onready var master_label = $"Margin外包/有玩家外包堆叠/顶部堆叠/Label房主"
-@onready var checked_label = $"Margin外包/有玩家外包堆叠/顶部堆叠/Label准备好了"
+@onready var ready_label = $"Margin外包/有玩家外包堆叠/顶部堆叠/Label准备好了"
 @onready var user_name_label = $"Margin外包/有玩家外包堆叠/Label玩家名"
 @onready var no_user_wrapper = $"Margin外包/没有玩家外包堆叠"
 @onready var user_wrapper = $"Margin外包/有玩家外包堆叠"
@@ -39,13 +39,13 @@ var room_master: bool:
     else:
       master_label.hide()
 
-var checked: bool:
+var is_ready: bool:
   set(value):
-    checked = value
-    if checked:
-      checked_label.show()
+    is_ready = value
+    if is_ready:
+      ready_label.show()
     else:
-      checked_label.hide()
+      ready_label.hide()
 
 var user_name: String:
   set(value):
@@ -72,7 +72,7 @@ func clear():
   joined = false
   you = false
   room_master = false
-  checked = false
+  is_ready = false
   user_name = ''
   bag = null
 

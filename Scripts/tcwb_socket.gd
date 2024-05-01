@@ -17,6 +17,8 @@ signal someone_leave_room(info)
 signal you_kicked_out(info)
 signal you_change_room_property(info)
 signal room_property_changed(info)
+signal user_ready_changed(info)
+signal game_started(info)
 
 func connect_to_backend():
   socket.connect_to_url("127.0.0.1:8090")
@@ -54,6 +56,12 @@ func request_change_room_property(loyal_count, traitor_count, rebel_count):
     'traitor_count': traitor_count,
     'rebel_count': rebel_count,
   })
+
+func request_ready_or_not():
+  send_command('ready-or-not', {})
+
+func request_start_game():
+  send_command('start-game', {})
 
 func send_ack(command: String, msg_id: String, info):
   info["msg_id"] = msg_id
@@ -115,6 +123,10 @@ func _process(delta):
           emit_signal("you_kicked_out", info)
         elif command == 'room-property-changed':
           emit_signal("room_property_changed", info)
+        elif command == 'user-ready-changed':
+          emit_signal("user_ready_changed", info)
+        elif command == 'game-started':
+          emit_signal("game_started", info)
   elif state == WebSocketPeer.STATE_CLOSING:
     socket.poll()
   elif state == WebSocketPeer.STATE_CLOSED:
